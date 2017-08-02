@@ -14,27 +14,30 @@ function handValue (hand) {
   // hand is a list of strings with values "2", "3", etc.
   console.log('handValue');
   console.log(hand);
-  let total = 0;
-  let ace_total = 0;
+  let total = 0; // this will hold our hand total value
+  let ace_total = 0;  // keep track of the number of aces, and determine
+                      // their value at the END OF THE HAND :-(
   hand.forEach(function(card){
     console.log(card);
-    let value = 0;
-    if(!parseInt(card)) {
+    let value = 0; // reset the value of each card to 0
+    if(!parseInt(card)) { // check if we have a face card or a number card
       console.log('face card detected');
       // face card
       // J, Q, K,  or A
       if(card==='A') {
-        console.log('ace detected');
+        console.log('ace detected'); // increment the ace count
         ace_total +=1;
       } else {
-        value = 10;
+        value = 10;  // otherwise, it must be J, Q, K
       }
     } else {
-      value = parseInt(card);
+      value = parseInt(card); // a number card just has it's value
     }
     console.log(value);
-    total += value;
+    total += value; // add the card to our running total
   });
+
+  // we have processed all the cards, now determine what As are worth
   if(ace_total>0) {
     if(total>21 || total>10){
       // all the aces are 1s
